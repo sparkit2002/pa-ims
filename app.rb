@@ -12,6 +12,8 @@ class App
     @tracks_played = load_tracks(json[2])
   end
 
+  attr_accessor :artists
+
   def loader
     json = File.read(@filename)
     load_values = JSON.parse(json)
@@ -38,7 +40,23 @@ class App
   end
 
   def help
-    puts "I will fill in help message later!"
+
+    message = """
+    List of commands:
+    Help:  displays information about how to use this app.  \"help\"
+    Exit:  saves the current state of the system and exits.  \"exit\"
+    Info:  displays the current state of the system: number of artists, tracks, and the last songs played.  \"info\"
+    Info Artist:  displays information about a given artist by ID.  \"info artist <ARTIST ID>
+    Info Track:  displays information about a given track by number.  \"info track <TRACK NUMBER>\"
+    Add Artist:  loads an artist into the system.  The artist can be accesssed by their assigned ID.  \"add artist <NAME>\"
+    Add Artist with ID:  loads an artist into the system with a custom ID. \" add artist <NAME> ID <CUSTOME ID>
+    Add Track:  loads a track into the system saved under the given artist. \"add track <TRACK NAME> by <ARTIST ID>\"
+    Play Track:  records that a track was played and when.  Tracks are numbered in the order they are added.  \"play track <NUMBER OF TRACK>\"
+    Count Tracks:  displays how many tracks are saved under a given artist.  \"count tracks by <ARTIST ID>\"
+    List Tracks:  lists all the tracks saved under a given artist.  \"list tracks by <ARTIST ID>\"
+    Erase:  clears all saved data in the system, returning the system to a freash state.  \"erase\""""
+
+    puts message
   end
 
   def quit
@@ -154,9 +172,15 @@ class App
       puts "Tracks stored for artist #{@artists[id].name}:"
       count = 1
       @artists[id].tracks.each do |song|
-        puts "#{count}. #{song}."
+        puts "#{count}. #{song.name}."
         count += 1
       end
     end
+  end
+
+  def erase
+    @artists.clear
+    @tracks_order.clear
+    @tracks_played.clear
   end
 end

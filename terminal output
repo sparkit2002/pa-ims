@@ -1,0 +1,97 @@
+MacBook-Pro:pa-ims Riely$ ruby ims.rb
+ims> help
+
+    List of commands:
+    Help:  displays information about how to use this app.  "help"
+    Exit:  saves the current state of the system and exits.  "exit"
+    Info:  displays the current state of the system: number of artists, tracks, and the last songs played.  "info"
+    Info Artist:  displays information about a given artist by ID.  "info artist <ARTIST ID>
+    Info Track:  displays information about a given track by number.  "info track <TRACK NUMBER>"
+    Add Artist:  loads an artist into the system.  The artist can be accesssed by their assigned ID.  "add artist <NAME>"
+
+    Add Artist with ID:  loads an artist into the system with a custom ID. " add artist <NAME> ID <CUSTOME ID>
+    Add Track:  loads a track into the system saved under the given artist. "add track <TRACK NAME> by <ARTIST ID>"
+    Play Track:  records that a track was played and when.  Tracks are numbered in the order they are added.  "play track <NUMBER OF TRACK>"
+    Count Tracks:  displays how many tracks are saved under a given artist.  "count tracks by <ARTIST ID>"
+    List Tracks:  lists all the tracks saved under a given artist.  "list tracks by <ARTIST ID>"
+    Erase:  clears all saved data in the system, returning the system to a freash state.  "erase"
+ims> add artist Smash Mouth
+Added artist Smash Mouth under ID sm.
+ims> add artist Queen
+Added artist Queen under ID qn.
+ims> add artist Riely Allen ID cool
+Added artist Riely Allen under ID cool.
+ims> add track All Star by sm
+Added track All Star by artist Smash Mouth.
+ims> add track Walking on the Sun by sm
+Added track Walking on the Sun by artist Smash Mouth.
+ims> add track Don't Stop Me Now by qn
+Added track Don't Stop Me Now by artist Queen.
+ims> add track Programer Anthem by cool
+Added track Programer Anthem by artist Riely Allen.
+ims> play track 1
+Played All Star by artist Smash Mouth at 15:22:9
+ims> play track 3
+Played Don't Stop Me Now by artist Queen at 15:22:13
+ims> info track 2
+Track 2 on list is Walking on the Sun by Smash Mouth
+ims> list tracks qn
+Tracks stored for artist Queen:
+1. Don't Stop Me Now.
+ims> list tracks cool
+Tracks stored for artist Riely Allen:
+1. Programer Anthem.
+ims> info artist sm
+The artist listed under ID sm is Smash Mouth.
+ims> info artist cool
+The artist listed under ID cool is Riely Allen.
+ims> add artist
+Artist name required.
+ims> add artist Smash Mouth
+Artist already exists under ID sm
+ims> add track
+Must input a track name and artist ID septerated by "by"
+ims> add track Bohemien Raphsody qn
+
+Must input a track name and artist ID septerated by "by"
+ims> info
+Last songs played:
+1. Don't Stop Me Now
+2. All Star
+Number of artists: 3
+Number of tracks: 4
+ims> play track 4
+Played Programer Anthem by artist Riely Allen at 15:23:41
+ims> play track 6
+No track under track number 6
+ims> play track 3
+Played Don't Stop Me Now by artist Queen at 15:23:51
+ims> info
+Last songs played:
+1. Don't Stop Me Now
+2. Programer Anthem
+3. Don't Stop Me Now
+4. All Star
+Number of artists: 3
+Number of tracks: 4
+ims> exit
+MacBook-Pro:pa-ims Riely$ ruby ims.rb
+ims> info
+Last songs played:
+1. Don't Stop Me Now
+2. Programer Anthem
+3. Don't Stop Me Now
+4. All Star
+Number of artists: 3
+Number of tracks: 4
+ims> info track 3
+Track 3 on list is Don't Stop Me Now by Queen
+ims> erase
+Are you sure you want to erase all saved data? (y/n)
+> y
+Data erased.
+ims> info
+Last songs played:
+Number of artists: 0
+Number of tracks: 0
+ims> exit

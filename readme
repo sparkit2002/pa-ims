@@ -1,3 +1,8 @@
 Riely Allen
 COSI 105b
 1/16/18
+
+
+In designing my code I broke the duties of my program into different objects, found in artist.rb, app.rb, and controller.rb.  All the ims.rb
+file is responsible for is obtaining user input, and sending it to the controller.  The controller then parses the string, checking to see if
+the command is valid.  If it is, the command is then sent to the app, which then executes it.
