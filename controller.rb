@@ -62,10 +62,29 @@ class Controller
   def add_track(input)
     #gotta add error cases...
     command = input[10,input.size]
-    splitter = command.split('by')
-    id = splitter[1].downcase.strip
-    name = splitter[0].strip
-    @app.add_track(id,name)
+    #byebug
+    if track_checker(command)
+      splitter = command.split('by')
+      if splitter[1] == nil
+        error("Must input an artist ID")
+      else
+        id = splitter[1].downcase.strip
+        name = splitter[0].strip
+        @app.add_track(id,name)
+      end
+    else
+      error("Must input a track name and artist ID septerated by \"by\"")
+    end
+  end
+
+  def track_checker(command)
+    if command == nil
+      return false
+    elsif command.include? 'by'
+      return true
+    else
+      return false
+    end
   end
 
   def info_artist(input)

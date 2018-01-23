@@ -115,18 +115,23 @@ class App
 
   def add_track(id,track)
     #adds a track to the artist
-    song = Track.new(track,@artists[id].name)
-    @artists[id].tracks << song
-    @tracks_order << song
-    puts "Added track #{track} by artist #{@artists[id].name}."
+    if @artists[id] != nil
+      song = Track.new(track,@artists[id].name)
+      @artists[id].tracks << song
+      @tracks_order << song
+      puts "Added track #{track} by artist #{@artists[id].name}."
+    else
+      puts "No artist saved under ID #{id}"
+    end
   end
 
   def play_track(number)
     number -= 1
+    time = Time.new
     if @tracks_order[number] == nil
       puts "No track under track number #{number+1}"
     else
-      puts "Played #{@tracks_order[number].name} by artist #{@tracks_order[number].artist}"
+      puts "Played #{@tracks_order[number].name} by artist #{@tracks_order[number].artist} at #{time.hour}:#{time.min}:#{time.sec}"
       @tracks_played << @tracks_order[number]
     end
   end
