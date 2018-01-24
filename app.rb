@@ -102,6 +102,18 @@ class App
     end
   end
 
+  def play_track_id(number,id)
+    number -= 1
+    time = Time.new
+    art = @artists[id]
+    if art.tracks[number] == nil
+      puts "No track under track number #{number+1}"
+    else
+      puts "Played #{art.tracks[number].name} by artist #{art.tracks[number].artist} at #{time.hour}:#{time.min}:#{time.sec}"
+      @tracks_played << art.tracks[number]
+    end
+  end
+
   def count_tracks(id)
     #counts the tracks of an artist (by ID)
     if @artists[id] == nil

@@ -1,1 +1,42 @@
-[{"sm":{"name":"Smash Mouth","tracks":[{"name":"All Star","artist":"Smash Mouth"}]},"bon":{"name":"Bon Jovi","tracks":[{"name":"Living on a Prayer","artist":"Bon Jovi"}]}},[{"name":"All Star","artist":"Smash Mouth"},{"name":"Living on a Prayer","artist":"Bon Jovi"}],[{"name":"All Star","artist":"Smash Mouth"}]]
+[
+  {
+    "sm": {
+      "name": "Smash Mouth",
+      "tracks": [
+        {
+          "name": "All Star",
+          "artist": "Smash Mouth"
+        }
+      ]
+    },
+    "bon": {
+      "name": "Bon Jovi",
+      "tracks": [
+        {
+          "name": "Living on a Prayer",
+          "artist": "Bon Jovi"
+        }
+      ]
+    }
+  },
+  [
+    {
+      "name": "All Star",
+      "artist": "Smash Mouth"
+    },
+    {
+      "name": "Living on a Prayer",
+      "artist": "Bon Jovi"
+    }
+  ],
+  [
+    {
+      "name": "All Star",
+      "artist": "Smash Mouth"
+    },
+    {
+      "name": "All Star",
+      "artist": "Smash Mouth"
+    }
+  ]
+]

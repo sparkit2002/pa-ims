@@ -57,7 +57,7 @@ require './artist.rb'
         json_store = [store_artists,store_order,store_played]
 
         File.open(@filename,'w') do |save|
-          save.write(json_store.to_json)
+          save.write(JSON.pretty_generate(json_store))
         end
       end
 

@@ -64,7 +64,6 @@ class Controller
     end
   end
 
-
   def add_artist_single(name,splitter)
     id = splitter[0].chars.first.downcase.strip
     id += splitter[0].chars.last.downcase.strip
@@ -163,16 +162,40 @@ class Controller
   end
 
   def play_track(input)
-    splitter = input.split(' ')
-    number = splitter[splitter.length-1].to_i
 
-    if number < 1
-      error("Must input a track number greater than 0")
+    if input.include? 'by'
+      play_track_artist(input)
     else
-      @app.play_track(number)
-    end
 
+      splitter = input.split(' ')
+      number = splitter[splitter.length-1].to_i
+
+      if number < 1
+        error("Must input a track number greater than 0")
+      else
+        @app.play_track(number)
+      end
+    end
   end
+
+  def play_track_artist(input)
+    splitter = input.split('by')
+    id = splitter[splitter.length-1].strip.downcase
+
+    if @app.artists[id] == nil
+      error("Must input valid artist ID")
+    else
+      split_num = splitter[0].split(' ')
+      number = split_num[split_num.length-1].strip.to_i
+      if number < 1
+        error("Must input a track number greater than 0")
+      else
+        @app.play_track_id(number,id)
+      end
+    end
+  end
+
+
 
   def erase
       puts "Are you sure you want to erase all saved data? (y/n)"
