@@ -2,7 +2,6 @@ require "./artist.rb"
 require "./storage.rb"
 require 'byebug'
 require 'json'
-
 class App
 
   def initialize
