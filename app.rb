@@ -1,4 +1,5 @@
 require "./artist.rb"
+require "./storage.rb"
 require 'byebug'
 require 'json'
 
@@ -6,38 +7,15 @@ class App
 
   def initialize
     @filename = "./json_storage.json"
-    json = loader()
-    @artists = load_artists(json[0])
-    @tracks_order = load_tracks(json[1])
-    @tracks_played = load_tracks(json[2])
+
+    @json = Storage.new
+
+    @artists = @json.load_artists(@json.loader[0])
+    @tracks_order = @json.load_tracks(@json.loader[1])
+    @tracks_played = @json.load_tracks(@json.loader[2])
   end
 
   attr_accessor :artists
-
-  def loader
-    json = File.read(@filename)
-    load_values = JSON.parse(json)
-    return load_values
-  end
-
-  def load_artists(json)
-    artists_load = {}
-
-    json.each do |key,value|
-      artists_load[key] = Artist.new(value['name'])
-      tracks = load_tracks(value['tracks'])
-      artists_load[key].tracks = tracks
-    end
-    return artists_load
-  end
-
-  def load_tracks(list)
-    tracks_load = []
-    list.each do |track|
-      tracks_load << Track.new(track['name'],track['artist'])
-    end
-    return tracks_load
-  end
 
   def help
 
@@ -60,38 +38,8 @@ class App
   end
 
   def quit
-    store_artists = store_art(@artists)
-    store_order = store_track(@tracks_order)
-    store_played = store_track(@tracks_played)
-
-    json_store = [store_artists,store_order,store_played]
-
-    File.open(@filename,'w') do |save|
-      save.write(json_store.to_json)
-    end
-
-
+    @json.save(@artists,@tracks_order,@tracks_played)
   end
-
-  def store_art(artists)
-    store = {}
-    artists.each do |key,value|
-      store_tracks = store_track(value.tracks)
-      store[key] = {'name' => value.name,'tracks' => store_tracks}
-    end
-
-    return store
-
-  end
-
-  def store_track(tracks)
-    store = []
-    tracks.each do |track|
-      store << {'name' => track.name, 'artist' => track.artist}
-    end
-    return store
-  end
-
 
   def info
     puts "Last songs played:"

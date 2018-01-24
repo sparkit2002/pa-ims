@@ -6,12 +6,13 @@ require './artist.rb'
     def initialize()
       @filename = "./json_storage.json"
       json = File.read(@filename)
-      @saved = JSON.parse(json)
+      @loader = JSON.parse(json)
     end
+
+    attr_accessor :loader
 
     def load_artists(json)
       artists_load = {}
-
       json.each do |key,value|
         artists_load[key] = Artist.new(value['name'])
         tracks = load_tracks(value['tracks'])
@@ -46,5 +47,18 @@ require './artist.rb'
       end
       return store
     end
-    
+
+    def save(artists,tracks_order,tracks_played)
+
+        store_artists = store_art(artists)
+        store_order = store_track(tracks_order)
+        store_played = store_track(tracks_played)
+
+        json_store = [store_artists,store_order,store_played]
+
+        File.open(@filename,'w') do |save|
+          save.write(json_store.to_json)
+        end
+      end
+
   end
