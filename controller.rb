@@ -1,7 +1,6 @@
 require "./app.rb"
 
 class Controller
-  #so this should be able to parse a string, and determine the correct input
   def initialize
     @app = App.new
   end

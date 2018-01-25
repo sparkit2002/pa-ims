@@ -1,6 +1,5 @@
 require "./controller.rb"
 
-# print "ims> "
 command = ""
 control = Controller.new
 while command != "exit"
